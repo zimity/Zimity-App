@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="zimity">Zimity</string>
+    <string name="deals">Deals</string>
+    <string name="friends">Friends</string>
+    <string name="imp_audio">Imprint Audio</string>
+    <string name="imp_event">Imprint Event</string>
+    <string name="imprint">Imprint</string>
+    <string name="imp_photo">Imprint Photo</string>
+    <string name="imp_remind">Imprint Reminder</string>
+    <string name="imp_video">Imprint Video</string>
+    <string name="imp_caption">Imprint Captions</string>
+    <string name="login">Login</string>
+    <string name="menu">Zimity</string>
+    <string name="settings">Settings</string>
+    <string name="search">Search</string>
+    <string name="nearby">Near By</string>
+    <string name="sync">Sync</string>
+    <string name="title">Zimity</string>
+    <string name="settingsTitle">SETTINGS</string>
+    <string name="dealsTitle">DEALS</string>
+    <string name="friendsTitle">FRIENDS</string>
+    <string name="imprintTitle">IMPRINT</string>
+    <string name="nearbyTitle">NEAR BY</string>
+    <string name="searchTitle">SEARCH</string>
+    <string name="syncTitle">SYNC</string>
+    <string name="termsTitle">TERMS OF SERVICE</string>
+    <string name="privacyTitle">PRIVACY POLICY</string>
+    <string name="termsURL">http://zimity.me/terms.htm</string>
+    <string name="privacyURL">http://zimity.me/privacy.htm</string>
+    <string name="privacy">Privacy Policy</string>
+    <string name="terms">Terms of Service</string>
+    <string name="about">About</string>
+    <string name="version">Version</string>
+    <string name="versionNumber">0.1.141010 alpha</string>
+    <string name="caption">Caption</string>
+    <string name="audio">Audio</string>
+    <string name="photo">Photo</string>
+    <string name="video">Video</string>
+    <string name="reminder">Reminder</string>
+    <string name="event">Event</string>
+    <string name="flurryid">LNNSSV38F1AYQFNSPG2R</string>
+    <string name="zimityURLProd">http://dev.zimity.me/imprints/add</string>
+    <string name="zimityURLDev">http://192.168.1.112:8888/imprints/add</string>
+    
+    <string name="SHARING_OPTION_PRIVATE">Private</string>
+    <string name="SHARING_OPTION_FRIENDS">Friends</string>
+    <string name="SHARING_OPTION_GLOBAL">Global</string>
+    
+    <string name="SHARING_OPTION_TITLE">Sharing options:</string>
+    <string name="OK_BUTTON_TEXT">Ok</string>
+    
+    <string name="PHOTO_EFFECT_DIALOG_TITLE">Photo Effects</string>
+</resources>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/bgrepeat">
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="@color/black"
+		android:padding="5sp">
+		
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/mini_logo" />
+			
+		<TextView android:layout_width="fill_parent"
+			android:textColor="@color/white" android:layout_height="wrap_content"
+			android:text="@string/zimity" android:paddingLeft="10sp" />
+			
+	</LinearLayout>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:orientation="horizontal" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:background="#86b97a"
+		android:padding="10sp">
+
+		<ImageView android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/settings_icon"
+			android:layout_gravity="center" />
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:text="@string/imprintTitle"
+			android:textColor="@color/white" android:textSize="25sp"
+			android:layout_gravity="center" android:paddingLeft="10sp" />
+
+	</LinearLayout>
+	
+	   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TableRow>
+            <ImageButton android:id="@+id/audio" android:src="@xml/caption_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent" android:onClick="captionActivity"
+                android:layout_weight="1" android:background="@null" />
+            <ImageButton android:id="@+id/audio" android:src="@xml/audio_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent" android:onClick="audioActivity"
+                android:layout_weight="1" android:background="@null" />
+        </TableRow>
+        
+        <TableRow>
+          <TextView android:text="@string/caption" android:textColor="#000000"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:gravity="center"  android:layout_weight="1" android:textStyle="bold" />
+          <TextView android:text="@string/audio" android:textColor="#000000"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:gravity="center" android:layout_weight="1" android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow>
+            <ImageButton android:id="@+id/photo" android:src="@xml/photo_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent" android:onClick="photoActivity"
+                android:layout_weight="1" android:background="@null" />
+            <ImageButton android:id="@+id/video" android:src="@xml/video_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent" android:onClick="videoActivity"
+                android:layout_weight="1" android:background="@null" />
+        </TableRow>
+        
+        <TableRow>
+          <TextView android:text="@string/photo" android:textColor="#000000"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:gravity="center"  android:layout_weight="1" android:textStyle="bold"/>
+          <TextView android:text="@string/video" android:textColor="#000000"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:gravity="center" android:layout_weight="1" android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow>
+            <ImageButton android:id="@+id/reminder" android:src="@xml/reminder_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent" android:onClick="reminderActivity"
+                android:layout_weight="1" android:background="@null" />
+            <ImageButton android:id="@+id/event" android:src="@xml/event_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent" android:onClick="eventActivity"
+                android:layout_weight="1" android:background="@null" />
+        </TableRow>
+        
+        <TableRow>
+          <TextView android:text="@string/reminder" android:textColor="#000000"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:gravity="center"  android:layout_weight="1" android:textStyle="bold" />
+          <TextView android:text="@string/event" android:textColor="#000000"
+              android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:gravity="center" android:layout_weight="1" android:textStyle="bold" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
