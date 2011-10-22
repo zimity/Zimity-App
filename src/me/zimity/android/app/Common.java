@@ -6,7 +6,16 @@ public class Common {
     // But then again, these strings should stay the same regardless of the client language
     
     public static final boolean PRODUCTION = false;
-    public static final String CLIENT_ID = "AD_1.0";
+    public static final String CLIENT_ID = "AND_1.0";
+    
+    public final static int ANALYTICS_DISPATCH_INTERVAL = 20;
+    
+    public final static int LOG_DISABLED = 0;
+    public final static int LOG_INFO = 1;
+    public final static int LOG_ERROR = 2;
+    public final static int LOG_DEBUG = 3;
+    
+    public final static int LOG_LEVEL = LOG_DISABLED;
     
     public final static String IMPRINT_TYPE = "imp_type";
     public final static String IMPRINT_NOTE = "note";

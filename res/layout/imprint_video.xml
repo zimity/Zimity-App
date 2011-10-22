@@ -22,7 +22,7 @@
 		<com.google.android.maps.MapView
 			android:id="@+id/map_view" android:layout_width="fill_parent"
 			android:layout_height="wrap_content" android:enabled="true"
-			android:clickable="true" android:apiKey="0evPjFkHid4AJSyXpS4V2AKmbRWHi7zXB5vYRjA"
+			android:clickable="true" android:apiKey="@string/GOOGLE_MAPS_API_KEY"
 			android:layout_weight="1" />
 		<EditText android:id="@+id/captionText"
 			android:layout_height="wrap_content" android:layout_width="fill_parent"
@@ -35,7 +35,7 @@
 				android:orientation="horizontal" android:layout_gravity="left" android:layout_weight="1">
 				<ImageButton android:id="@+id/sharing_button"
 					android:src="@xml/sharing_button" android:layout_height="wrap_content"
-					android:layout_width="wrap_content" android:onClick="sharingSelection"
+					android:layout_width="wrap_content"
 					android:background="@null" />
 			</LinearLayout>
 			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,11 +43,11 @@
 				android:orientation="horizontal" android:layout_gravity="right" android:layout_weight="0">
 				<ImageButton android:id="@+id/speech_button"
 					android:src="@xml/speech_button" android:layout_height="wrap_content"
-					android:layout_width="wrap_content" android:onClick="speechInput"
+					android:layout_width="wrap_content"
 					android:background="@null" />
 				<ImageButton android:id="@+id/save_button" android:src="@xml/save_button"
 					android:layout_height="wrap_content" android:layout_width="wrap_content"
-					android:onClick="saveCaption" android:background="@null" />
+					android:background="@null" />
 			</LinearLayout>
 		</LinearLayout>
 	</LinearLayout>

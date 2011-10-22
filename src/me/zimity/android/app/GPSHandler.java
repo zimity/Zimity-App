@@ -9,7 +9,6 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import com.flurry.android.FlurryAgent;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
@@ -49,7 +48,9 @@ public class GPSHandler {
     private int userSharingChoice = Common.IMPRINT_SHARING_PRIVATE;
 
     private MapView mapView;
+    
     private LocationManager locationManager;
+    
     private MapController mapController;
     private String bestProvider;
     private String coarseProvider;
@@ -87,7 +88,7 @@ public class GPSHandler {
         itemizedOverlay = new MapViewOverlay(drawable);
 
         locationManager = (LocationManager) activity
-                .getSystemService(Context.LOCATION_SERVICE);
+               .getSystemService(Context.LOCATION_SERVICE);
 
         Criteria criteriaFine = new Criteria();
         criteriaFine.setPowerRequirement(Criteria.POWER_LOW);

@@ -14,7 +14,7 @@
 		<TextView android:layout_width="fill_parent"
 			android:textColor="@color/white" android:layout_height="wrap_content"
 			android:text="@string/zimity" android:paddingLeft="10sp" />
-			
+	
 	</LinearLayout>
 
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -35,11 +35,11 @@
 	   <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent" android:layout_height="fill_parent">
         <TableRow>
-            <ImageButton android:id="@+id/audio" android:src="@xml/caption_button" android:layout_height="wrap_content"
-                android:layout_width="fill_parent" android:onClick="captionActivity"
+            <ImageButton android:id="@+id/caption_button" android:src="@xml/caption_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_weight="1" android:background="@null" />
-            <ImageButton android:id="@+id/audio" android:src="@xml/audio_button" android:layout_height="wrap_content"
-                android:layout_width="fill_parent" android:onClick="audioActivity"
+            <ImageButton android:id="@+id/audio_button" android:src="@xml/audio_button" android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_weight="1" android:background="@null" />
         </TableRow>
         
@@ -54,10 +54,10 @@
 
         <TableRow>
             <ImageButton android:id="@+id/photo" android:src="@xml/photo_button" android:layout_height="wrap_content"
-                android:layout_width="fill_parent" android:onClick="photoActivity"
+                android:layout_width="fill_parent"
                 android:layout_weight="1" android:background="@null" />
             <ImageButton android:id="@+id/video" android:src="@xml/video_button" android:layout_height="wrap_content"
-                android:layout_width="fill_parent" android:onClick="videoActivity"
+                android:layout_width="fill_parent"
                 android:layout_weight="1" android:background="@null" />
         </TableRow>
         
@@ -72,10 +72,10 @@
 
         <TableRow>
             <ImageButton android:id="@+id/reminder" android:src="@xml/reminder_button" android:layout_height="wrap_content"
-                android:layout_width="fill_parent" android:onClick="reminderActivity"
+                android:layout_width="fill_parent"
                 android:layout_weight="1" android:background="@null" />
             <ImageButton android:id="@+id/event" android:src="@xml/event_button" android:layout_height="wrap_content"
-                android:layout_width="fill_parent" android:onClick="eventActivity"
+                android:layout_width="fill_parent"
                 android:layout_weight="1" android:background="@null" />
         </TableRow>
         

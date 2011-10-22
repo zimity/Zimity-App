@@ -6,27 +6,26 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
-import com.flurry.android.FlurryAgent;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.ViewById;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
 import android.media.ExifInterface;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -36,57 +35,58 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+@EActivity(R.layout.imprint_photo)
 public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback {
 
-    private static int TAKE_PICTURE = 1;
-    private Uri outputFileUri;
     private Camera camera;
+    private Parameters parameters;
     
-    //TextView captionText;
+	private GoogleAnalyticsTracker tracker;
+	private Resources res;
     
-    GPSHandler gps;
+    private GPSHandler gps;
+    
+	@ViewById
+	TextView captionText;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.imprint_photo);
+	@ViewById
+	ImageButton save_button;
+
+	@ViewById
+	ImageButton speech_button;
+
+	@ViewById
+	MapView map_view;
+	
+	@ViewById
+	SurfaceView surface;
+    
+	@AfterViews
+	public void init() {
+		res = this.getResources();
+		
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);
+	
+        gps = new GPSHandler(this, map_view, captionText, save_button, speech_button);
         
-        gps = new GPSHandler(this, (MapView) findViewById(R.id.map_view),
-                (TextView) findViewById(R.id.captionText),
-                (ImageButton) findViewById(R.id.save_button),
-                (ImageButton) findViewById(R.id.speech_button));
-        
-        SurfaceView surface = (SurfaceView) findViewById(R.id.surface);
         SurfaceHolder holder = surface.getHolder();
         holder.addCallback(this);
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         holder.setFixedSize(400, 300);
-    }
-
-    public void savePhoto(View view) {
-        camera.takePicture(shutterCallback, rawCallback, jpegCallback);
-    }
+	}
 
     @Override
     public void onStart() {
         super.onStart();
 
-        Resources res = getResources();
-        FlurryAgent.onStartSession(this, res.getString(R.string.flurryid));
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        FlurryAgent.onEndSession(this);
+        tracker.trackPageView("/ImprintPhoto");
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        Log.e("Entering onResume()", ".");
         gps.startLocationUpdates();
     }
 
@@ -94,7 +94,6 @@ public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback 
     public void onPause() {
         super.onPause();
 
-        Log.e("Entering onPause()", ".");
         gps.stopLocationUpdates();
     }
 
@@ -102,16 +101,19 @@ public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback 
     public void onDestroy() {
         super.onDestroy();
 
-        Log.e("Entering onDestroy()", ".");
+        tracker.stopSession();
     }
 
+    /*
+     * Implementing mandatory method
+     */
     public void surfaceChanged(SurfaceHolder holder, int format, int width,
             int height) {
     }
 
     public void surfaceCreated(SurfaceHolder holder) {
         try {
-            camera = camera.open();
+            camera = Camera.open();
             camera.setPreviewDisplay(holder);        
             camera.startPreview();
         } catch (IOException e) {
@@ -161,9 +163,7 @@ public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback 
             }
         }
     };
-    
-    Camera.Parameters parameters;
-    
+        
     public void photoEffect(View view) {
         final CharSequence[] items;
         
@@ -198,12 +198,20 @@ public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         gps.speechResult(requestCode, resultCode, data);
     }
+  
     
-    public void sharingSelection(View view) {
+    @Click(R.id.sharing_button)
+    public void onClickSharingButton(View view) {
         gps.sharingSelection();
     }
 
-    public void speechInput(View view) {
+    @Click(R.id.speech_button)
+    public void onClickSpeechInput(View view) {
         gps.speechInput();
     }
+    
+	@Click(R.id.save_button)
+	public void onClickSaveButton(View view) {
+        camera.takePicture(shutterCallback, rawCallback, jpegCallback);
+	}
 }

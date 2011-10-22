@@ -19,6 +19,7 @@
 	<!-- Application Permissions -->
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.CALL_PHONE" />
 	<uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -33,7 +34,7 @@
 		<uses-library android:name="com.google.android.maps" />
 
 		<!-- Application Entry Point -->
-		<activity android:name=".MainMenu" android:label="@string/zimity">
+		<activity android:name=".MainMenu_" android:label="@string/zimity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -41,22 +42,22 @@
 		</activity>
 
 		<!-- Application Activities -->
-		<activity android:name=".LoginScreen" android:label="@string/login"></activity>
-		<activity android:name=".TitleScreen" android:label="@string/title"></activity>
-		<!-- <activity android:name=".MainMenu" android:label="@string/menu"></activity> -->
-		<activity android:name=".Settings" android:label="@string/settings"></activity>
-		<activity android:name=".Deals" android:label="@string/deals"></activity>
-		<activity android:name=".Friends" android:label="@string/friends"></activity>
-		<activity android:name=".NearBy" android:label="@string/nearby"></activity>
-		<activity android:name=".Search" android:label="@string/search"></activity>
-		<activity android:name=".ImprintAudio" android:label="@string/imp_audio"></activity>
-		<activity android:name=".ImprintEvent" android:label="@string/imp_event"></activity>
-		<activity android:name=".ImprintMenu" android:label="@string/imprint"></activity>
-		<activity android:name=".ImprintPhoto" android:label="@string/imp_photo"></activity>
-		<activity android:name=".ImprintReminder" android:label="@string/imp_remind"></activity>
-		<activity android:name=".ImprintVideo" android:label="@string/imp_video"></activity>
-		<activity android:name=".ImprintCaption" android:label="@string/imp_caption"></activity>
-		<activity android:name=".Terms" android:label="@string/terms"></activity>
-		<activity android:name=".Privacy" android:label="@string/privacy"></activity>
+		<activity android:name=".LoginScreen_" android:label="@string/login"></activity>
+		<activity android:name=".TitleScreen_" android:label="@string/title"></activity>
+		<activity android:name=".Settings_" android:label="@string/settings"></activity>
+		<activity android:name=".Deals_" android:label="@string/deals"></activity>
+		<activity android:name=".Friends_" android:label="@string/friends"></activity>
+		<activity android:name=".NearBy_" android:label="@string/nearby"></activity>
+		<activity android:name=".Search_" android:label="@string/search"></activity>
+		<activity android:name=".ImprintAudio_" android:label="@string/imp_audio"></activity>
+		<activity android:name=".ImprintEvent_" android:label="@string/imp_event"></activity>
+		<activity android:name=".ImprintMenu_" android:label="@string/imprint"></activity>
+		<activity android:name=".ImprintPhoto_" android:label="@string/imp_photo"></activity>
+		<activity android:name=".ImprintReminder_" android:label="@string/imp_remind"></activity>
+		<activity android:name=".ImprintVideo_" android:label="@string/imp_video"></activity>
+		<activity android:name=".ImprintNote_" android:label="@string/imp_note"></activity>
+		<activity android:name=".Terms_" android:label="@string/terms"></activity>
+		<activity android:name=".Privacy_" android:label="@string/privacy"></activity>
+		<activity android:name=".Register_"></activity>
 	</application>
 </manifest> 

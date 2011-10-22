@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="GOOGLE_MAPS_API_KEY">0evPjFkHid4An24pjaLUeX1FRhhIXY18mF8xUxQ</string>
+    <string name="GOOGLE_ANALYTICS_API_KEY">UA-26494119-1</string>
+    
     <string name="zimity">Zimity</string>
     <string name="deals">Deals</string>
     <string name="friends">Friends</string>
@@ -9,7 +12,7 @@
     <string name="imp_photo">Imprint Photo</string>
     <string name="imp_remind">Imprint Reminder</string>
     <string name="imp_video">Imprint Video</string>
-    <string name="imp_caption">Imprint Captions</string>
+    <string name="imp_note">Imprint Note</string>
     <string name="login">Login</string>
     <string name="menu">Zimity</string>
     <string name="settings">Settings</string>

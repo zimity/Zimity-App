@@ -1,43 +1,59 @@
 package me.zimity.android.app;
 
-import com.flurry.android.FlurryAgent;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.ViewById;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+@EActivity(R.layout.imprint_video)
 public class ImprintVideo extends MapActivity {
     
-    GPSHandler gps;
+    private GPSHandler gps;
     
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.imprint_video);
+	private GoogleAnalyticsTracker tracker;
+	private Resources res;
+	
+	@ViewById
+	TextView captionText;
+
+	@ViewById
+	ImageButton save_button;
+
+	@ViewById
+	ImageButton speech_button;
+
+	@ViewById
+	MapView map_view;
+
+	@AfterViews
+	public void init() {
+		res = this.getResources();
+		
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);
         
-        gps = new GPSHandler(this, (MapView) findViewById(R.id.map_view),
-                (TextView) findViewById(R.id.captionText),
-                (ImageButton) findViewById(R.id.save_button),
-                (ImageButton) findViewById(R.id.speech_button));
+        gps = new GPSHandler(this, map_view, captionText, save_button, speech_button);
         
         Uri i = Uri.parse("/");
         
         recordVideo(i);
-    }
-
+	}
+	
+	// TODO: THIS SHOULD BE A PREFERENCES OPTIONS
     private static int RECORD_VIDEO = 1;
     private static int HIGH_VIDEO_QUALITY = 1;
-    //private static int MMS_VIDEO_QUALITY = 0;
+    private static int MMS_VIDEO_QUALITY = 0;
 
     private void recordVideo(Uri outputpath) {
         Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
@@ -53,7 +69,7 @@ public class ImprintVideo extends MapActivity {
         
         if (requestCode == RECORD_VIDEO) {
             Uri recordedVideo = data.getData();
-            // TODO Do something with the recorded video
+            // TODO: Do something with the recorded video
         }
     }
 
@@ -61,26 +77,12 @@ public class ImprintVideo extends MapActivity {
     public void onStart() {
         super.onStart();
 
-        Log.e("Entering onStart()", ".");
-
-        Resources res = getResources();
-        FlurryAgent.onStartSession(this, res.getString(R.string.flurryid));
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        Log.e("Entering onStop()", ".");
-
-        FlurryAgent.onEndSession(this);
+        tracker.trackPageView("/ImprintVideo");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        Log.e("Entering onResume()", ".");
 
         gps.startLocationUpdates();
     }
@@ -89,8 +91,6 @@ public class ImprintVideo extends MapActivity {
     public void onPause() {
         super.onPause();
 
-        Log.e("Entering onPause()", ".");
-
         gps.stopLocationUpdates();
     }
 
@@ -98,7 +98,7 @@ public class ImprintVideo extends MapActivity {
     public void onDestroy() {
         super.onDestroy();
 
-        Log.e("Entering onDestroy()", ".");
+        tracker.stopSession();
     }
 
     /*
@@ -111,12 +111,18 @@ public class ImprintVideo extends MapActivity {
         return false;
     }
     
-    
-    public void sharingSelection(View view) {
+	@Click(R.id.save_button)
+	public void saveVideo(View view) {
+		// SAVE IMPRINT
+	}
+
+    @Click(R.id.sharing_button)
+    public void onClickSharingButton(View view) {
         gps.sharingSelection();
     }
 
-    public void speechInput(View view) {
+    @Click(R.id.speech_button)
+    public void onClickSpeechInput(View view) {
         gps.speechInput();
     }
 }

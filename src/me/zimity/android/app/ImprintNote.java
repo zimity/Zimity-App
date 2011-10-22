@@ -1,13 +1,15 @@
 package me.zimity.android.app;
 
-import com.flurry.android.FlurryAgent;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.ViewById;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,94 +19,95 @@ import android.widget.TextView;
  * 
  */
 
+@EActivity(R.layout.imprint_note)
 public class ImprintNote extends MapActivity {
 
-    GPSHandler gps;
-    TextView noteText;
+	private GPSHandler gps;
+	private GoogleAnalyticsTracker tracker;
+	private Resources res;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.imprint_caption);
-        
-        noteText = (TextView) findViewById(R.id.captionText);
-        
-        gps = new GPSHandler(this, (MapView) findViewById(R.id.map_view),
-                noteText,
-                (ImageButton) findViewById(R.id.save_button),
-                (ImageButton) findViewById(R.id.speech_button));
-    }
+	@ViewById
+	TextView captionText;
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        gps.speechResult(requestCode, resultCode, data);
-    }
+	@ViewById
+	ImageButton save_button;
 
-    @Override
-    public void onStart() {
-        super.onStart();
+	@ViewById
+	ImageButton speech_button;
 
-        Log.e("Entering onStart()", ".");
+	@ViewById
+	MapView map_view;
 
-        Resources res = getResources();
-        FlurryAgent.onStartSession(this, res.getString(R.string.flurryid));
-    }
+	@AfterViews
+	public void init() {
+		res = this.getResources();
 
-    @Override
-    public void onStop() {
-        super.onStop();
+		gps = new GPSHandler(this, map_view, captionText, save_button,
+				speech_button);
 
-        Log.e("Entering onStop()", ".");
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession(
+				res.getString(R.string.GOOGLE_ANALYTICS_API_KEY),
+				Common.ANALYTICS_DISPATCH_INTERVAL, this);
+	}
 
-        FlurryAgent.onEndSession(this);
-    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		gps.speechResult(requestCode, resultCode, data);
+	}
 
-    @Override
-    public void onResume() {
-        super.onResume();
+	@Override
+	public void onStart() {
+		super.onStart();
 
-        Log.e("Entering onResume()", ".");
+		tracker.trackPageView("/ImprintNote");
+	}
 
-        gps.startLocationUpdates();
-    }
+	@Override
+	public void onResume() {
+		super.onResume();
 
-    @Override
-    public void onPause() {
-        super.onPause();
+		gps.startLocationUpdates();
+	}
 
-        Log.e("Entering onPause()", ".");
+	@Override
+	public void onPause() {
+		super.onPause();
 
-        gps.stopLocationUpdates();
-    }
+		gps.stopLocationUpdates();
+	}
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
 
-        Log.e("Entering onDestroy()", ".");
-    }
+		tracker.stopSession();
+	}
 
-    /*
-     * Mandatory overriden field.
-     * 
-     * @return boolean Returns whether a route is displayed or not
-     */
-    @Override
-    protected boolean isRouteDisplayed() {
-        return false;
-    }
+	/*
+	 * Mandatory overriden field.
+	 * 
+	 * @return boolean Returns whether a route is displayed or not
+	 */
+	@Override
+	protected boolean isRouteDisplayed() {
+		return false;
+	}
 
-    public void sharingSelection(View view) {
+	@Click(R.id.save_button)
+	public void saveCaption(View view) {
+		if (captionText.getText().length() != 0) {
+			gps.transmitData(Common.IMPRINT_TYPE_NOTE, "");
+		}
+	}
+
+    @Click(R.id.sharing_button)
+    public void onClickSharingButton(View view) {
         gps.sharingSelection();
     }
 
-    public void saveCaption(View view) {
-        if (noteText.getText().length() != 0) {
-            gps.transmitData(Common.IMPRINT_TYPE_NOTE, "");
-        }
-    }
-
-    public void speechInput(View view) {
+    @Click(R.id.speech_button)
+    public void onClickSpeechInput(View view) {
         gps.speechInput();
     }
 }
