@@ -13,11 +13,8 @@
 	<classpathentry kind="lib" path="libs/microlog4android-1.0.0.jar"/>
 	<classpathentry kind="lib" path="libs/ormlite-android-4.27.jar"/>
 	<classpathentry kind="lib" path="libs/twitter4j-core-android-2.2.4.jar"/>
-	<classpathentry kind="src" path=".apt_generated">
-		<attributes>
-			<attribute name="optional" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/androidannotations-2.1.2.jar"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry kind="lib" path="libs/guice-2.0-no_aop.jar"/>
+	<classpathentry kind="lib" path="libs/roboguice-1.1.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

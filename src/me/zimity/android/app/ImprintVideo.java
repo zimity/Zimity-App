@@ -1,45 +1,46 @@
 package me.zimity.android.app;
 
+import roboguice.activity.RoboMapActivity;
+import roboguice.inject.InjectView;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Click;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
+import com.google.inject.Inject;
 
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-@EActivity(R.layout.imprint_video)
-public class ImprintVideo extends MapActivity {
+public class ImprintVideo extends RoboMapActivity {
     
     private GPSHandler gps;
     
 	private GoogleAnalyticsTracker tracker;
-	private Resources res;
+	@Inject Resources res;
 	
-	@ViewById
-	TextView captionText;
-
-	@ViewById
-	ImageButton save_button;
-
-	@ViewById
-	ImageButton speech_button;
-
-	@ViewById
-	MapView map_view;
-
-	@AfterViews
-	public void init() {
-		res = this.getResources();
-		
+    @InjectView(R.id.captionText)
+    TextView captionText;
+    
+    @InjectView(R.id.save_button)
+    ImageButton save_button;
+    
+    @InjectView(R.id.speech_button)
+    ImageButton speech_button;
+    
+    @InjectView(R.id.map_view)
+    MapView map_view;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.imprint_video);
+				
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);
         
@@ -111,18 +112,15 @@ public class ImprintVideo extends MapActivity {
         return false;
     }
     
-	@Click(R.id.save_button)
-	public void saveVideo(View view) {
+	public void onClickSaveButton(View view) {
 		// SAVE IMPRINT
 	}
 
-    @Click(R.id.sharing_button)
     public void onClickSharingButton(View view) {
         gps.sharingSelection();
     }
 
-    @Click(R.id.speech_button)
-    public void onClickSpeechInput(View view) {
+    public void onClickSpeechButton(View view) {
         gps.speechInput();
     }
 }

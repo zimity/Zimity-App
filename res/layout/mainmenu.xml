@@ -13,11 +13,11 @@
 		<TableRow>
 			<ImageButton android:id="@+id/imprint" android:src="@xml/imprint_button"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
-				android:layout_weight="1"
+				android:layout_weight="1" android:onClick="onClickImprintButton"
 				android:background="@null" android:paddingBottom="10sp" />
 			<ImageButton android:id="@+id/search" android:src="@xml/search_button"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
-				android:layout_weight="1"
+				android:layout_weight="1" android:onClick="onClickSearchButton"
 				android:background="@null" android:paddingBottom="10sp" />
 		</TableRow>
 
@@ -35,11 +35,11 @@
 		<TableRow>
 			<ImageButton android:id="@+id/friends" android:src="@xml/friends_button"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
-				android:layout_weight="1"
+				android:layout_weight="1" android:onClick="onClickFriendsButton"
 				android:background="@null" android:paddingBottom="10sp" />
 			<ImageButton android:id="@+id/deals" android:src="@xml/deals_button"
 				android:layout_height="wrap_content" android:layout_width="fill_parent"
-				android:layout_weight="1"
+				android:layout_weight="1" android:onClick="onClickDealsButton"
 				android:background="@null" android:paddingBottom="10sp" />
 		</TableRow>
 

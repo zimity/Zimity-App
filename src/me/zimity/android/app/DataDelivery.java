@@ -21,7 +21,7 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 //TODO: Perhaps have an imprint object class
-
+//TODO: Change to RoboAsyncTask
 public class DataDelivery extends AsyncTask<HashMap<String, String>, Integer, Long> {
 
     private String REQUEST_PREFIX = "data[Imprint][";

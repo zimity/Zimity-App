@@ -1,50 +1,48 @@
 package me.zimity.android.app;
 
+import roboguice.activity.RoboActivity;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Click;
-import com.googlecode.androidannotations.annotations.EActivity;
+import com.google.inject.Inject;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-@EActivity(R.layout.mainmenu)
-public class MainMenu extends Activity {
+public class MainMenu extends RoboActivity {
     
 	private GoogleAnalyticsTracker tracker;
-	private Resources res;
-    
-	@AfterViews
-	public void init() {
-		res = this.getResources();
-		
+	@Inject Resources res;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.mainmenu);
+			
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);
+
 	}
     
-	@Click(R.id.imprint)
-    public void imprintActivity(View view) {
-        startActivity(new Intent(this, ImprintMenu_.class));
+    public void onClickImprintButton(View view) {
+        startActivity(new Intent(this, ImprintMenu.class));
     }
     
-	@Click(R.id.search)
-    public void searchActivity(View view) {
-        startActivity(new Intent(this, Search_.class));
+    public void onClickSearchButton(View view) {
+        startActivity(new Intent(this, Search.class));
     }
     
-	@Click(R.id.friends)
-    public void friendsActivity(View view) {
-        startActivity(new Intent(this, Friends_.class));
+    public void onClickFriendsButton(View view) {
+        startActivity(new Intent(this, Friends.class));
     }
     
-	@Click(R.id.deals)
-    public void dealsActivity(View view) {
-        startActivity(new Intent(this, Deals_.class));
+    public void onClickDealsButton(View view) {
+        startActivity(new Intent(this, Deals.class));
     }
     
     @Override

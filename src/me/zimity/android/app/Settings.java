@@ -1,25 +1,25 @@
 package me.zimity.android.app;
 
+import roboguice.activity.RoboPreferenceActivity;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EActivity;
+import com.google.inject.Inject;
 
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.Preference;
 
-@EActivity
-public class Settings extends PreferenceActivity {
+public class Settings extends RoboPreferenceActivity {
 	
 	private GoogleAnalyticsTracker tracker;
-	private Resources res;
+	@Inject Resources res;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.settings);
 
-	@AfterViews
-	public void init() {
-		res = this.getResources();
-		
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);
 		

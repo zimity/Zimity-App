@@ -35,7 +35,7 @@
 				android:orientation="horizontal" android:layout_gravity="left" android:layout_weight="1">
 				<ImageButton android:id="@+id/sharing_button"
 					android:src="@xml/sharing_button" android:layout_height="wrap_content"
-					android:layout_width="wrap_content"
+					android:layout_width="wrap_content" android:onClick="onClickSharingButton"
 					android:background="@null" />
 			</LinearLayout>
 			<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,10 +44,10 @@
 				<ImageButton android:id="@+id/speech_button"
 					android:src="@xml/speech_button" android:layout_height="wrap_content"
 					android:layout_width="wrap_content"
-					android:background="@null" />
+					android:background="@null" android:onClick="onClickSpeechButton" />
 				<ImageButton android:id="@+id/save_button" android:src="@xml/save_button"
 					android:layout_height="wrap_content" android:layout_width="wrap_content"
-					android:background="@null" />
+					android:background="@null" android:onClick="onClickSaveButton" />
 			</LinearLayout>
 		</LinearLayout>
 	</LinearLayout>

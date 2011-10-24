@@ -9,12 +9,16 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import roboguice.activity.RoboActivity;
+
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -41,7 +45,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class GPSHandler {
+public class GPSHandler extends RoboActivity {
 
     private final static int MAP_ZOOMLEVEL = 17;
     private final static int VOICE_RECOGNITION_REQUEST_CODE = 1985;
@@ -87,8 +91,7 @@ public class GPSHandler {
         drawable = activity.getResources().getDrawable(R.drawable.mini_logo);
         itemizedOverlay = new MapViewOverlay(drawable);
 
-        locationManager = (LocationManager) activity
-               .getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager)activity.getSystemService(Context.LOCATION_SERVICE);
 
         Criteria criteriaFine = new Criteria();
         criteriaFine.setPowerRequirement(Criteria.POWER_LOW);

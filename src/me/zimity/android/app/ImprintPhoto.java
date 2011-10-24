@@ -8,13 +8,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import roboguice.activity.RoboMapActivity;
+import roboguice.inject.InjectView;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.Click;
-import com.googlecode.androidannotations.annotations.EActivity;
-import com.googlecode.androidannotations.annotations.ViewById;
+import com.google.inject.Inject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,6 +26,7 @@ import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
 import android.media.ExifInterface;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -35,35 +36,35 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-@EActivity(R.layout.imprint_photo)
-public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback {
+public class ImprintPhoto extends RoboMapActivity implements SurfaceHolder.Callback {
 
     private Camera camera;
     private Parameters parameters;
     
 	private GoogleAnalyticsTracker tracker;
-	private Resources res;
+	@Inject private Resources res;
     
     private GPSHandler gps;
     
-	@ViewById
-	TextView captionText;
-
-	@ViewById
-	ImageButton save_button;
-
-	@ViewById
-	ImageButton speech_button;
-
-	@ViewById
-	MapView map_view;
-	
-	@ViewById
+    @InjectView(R.id.captionText)
+    TextView captionText;
+    
+    @InjectView(R.id.save_button)
+    ImageButton save_button;
+    
+    @InjectView(R.id.speech_button)
+    ImageButton speech_button;
+    
+    @InjectView(R.id.map_view)
+    MapView map_view;
+    
+	@InjectView(R.id.surface)
 	SurfaceView surface;
     
-	@AfterViews
-	public void init() {
-		res = this.getResources();
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.imprint_photo);
 		
 		tracker = GoogleAnalyticsTracker.getInstance();
 		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);
@@ -164,7 +165,7 @@ public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback 
         }
     };
         
-    public void photoEffect(View view) {
+    public void onCLickPhotoEffectButton(View view) {
         final CharSequence[] items;
         
         parameters = camera.getParameters();
@@ -200,17 +201,14 @@ public class ImprintPhoto extends MapActivity implements SurfaceHolder.Callback 
     }
   
     
-    @Click(R.id.sharing_button)
     public void onClickSharingButton(View view) {
         gps.sharingSelection();
     }
 
-    @Click(R.id.speech_button)
-    public void onClickSpeechInput(View view) {
+    public void onClickSpeechButton(View view) {
         gps.speechInput();
     }
     
-	@Click(R.id.save_button)
 	public void onClickSaveButton(View view) {
         camera.takePicture(shutterCallback, rawCallback, jpegCallback);
 	}

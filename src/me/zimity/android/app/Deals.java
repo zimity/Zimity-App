@@ -1,26 +1,27 @@
 package me.zimity.android.app;
 
+import roboguice.activity.RoboActivity;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.googlecode.androidannotations.annotations.AfterViews;
-import com.googlecode.androidannotations.annotations.EActivity;
+import com.google.inject.Inject;
 
-import android.app.Activity;
 import android.content.res.Resources;
+import android.os.Bundle;
 
-@EActivity(R.layout.deals)
-public class Deals extends Activity {
+public class Deals extends RoboActivity {
 	
 	private GoogleAnalyticsTracker tracker;
-	private Resources res;
+	@Inject private Resources res;
 	
-	@AfterViews
-	public void init() {
-		res = this.getResources();
-		
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.deals);
+
 		tracker = GoogleAnalyticsTracker.getInstance();
-		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);
+		tracker.startNewSession(res.getString(R.string.GOOGLE_ANALYTICS_API_KEY), Common.ANALYTICS_DISPATCH_INTERVAL, this);		
 	}
-    
+
     @Override
     public void onStart() {
        super.onStart();

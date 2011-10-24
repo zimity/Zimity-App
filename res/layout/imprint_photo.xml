@@ -43,11 +43,11 @@
 			<ImageButton android:id="@+id/sharing_button"
 				android:src="@xml/sharing_button" android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:background="@null" />
+				android:background="@null" android:onClick="onClickSharingButton" />
 			<ImageButton android:id="@+id/photoEffectButton"
 				android:src="@xml/photo_effect_button" android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:background="@null" />
+				android:background="@null" android:onClick="onClickPhotoEffectButton"/>
 		</LinearLayout>
 		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			android:layout_height="wrap_content" android:layout_width="wrap_content"
@@ -55,10 +55,10 @@
 			android:layout_weight="0">
 			<ImageButton android:id="@+id/speech_button" android:src="@xml/speech_button"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:onClick="speechInput" android:background="@null" />
+				android:background="@null" android:onClick="onClickSpeechButton" />
 			<ImageButton android:id="@+id/save_button" android:src="@xml/save_button"
 				android:layout_height="wrap_content" android:layout_width="wrap_content"
-				android:background="@null" />
+				android:background="@null" android:onClick="onClickSpeechButton" />
 		</LinearLayout>
 	</LinearLayout>
 
