@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bgrepeat"
+    android:orientation="vertical"
+    android:padding="10sp" >
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <TableRow >
+
+            <ImageButton
+                android:id="@+id/imprint"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:onClick="onClickImprintButton"
+                android:paddingBottom="10sp"
+                android:src="@xml/imprint_button" />
+
+            <ImageButton
+                android:id="@+id/search"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:onClick="onClickSearchButton"
+                android:paddingBottom="10sp"
+                android:src="@xml/search_button" />
+        </TableRow>
+
+        <TableRow >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="20sp"
+                android:text="@string/imprint"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="20sp"
+                android:text="@string/search"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <TableRow >
+
+            <ImageButton
+                android:id="@+id/friends"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:onClick="onClickFriendsButton"
+                android:paddingBottom="10sp"
+                android:src="@xml/friends_button" />
+
+            <ImageButton
+                android:id="@+id/deals"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:onClick="onClickDealsButton"
+                android:paddingBottom="10sp"
+                android:src="@xml/deals_button" />
+        </TableRow>
+
+        <TableRow >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="20sp"
+                android:text="@string/friends"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingBottom="20sp"
+                android:text="@string/deals"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+        </TableRow>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090" />
+
+        <TextView android:text="Latest Update" />
+    </TableLayout>
+
+</LinearLayout>

@@ -1,63 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="me.zimity.android.app" android:versionCode="1"
-	android:versionName="1.0">
+    package="me.zimity.android.app"
+    android:versionCode="1"
+    android:versionName="1.0" >
 
-	<!-- Target OS Version -->
-	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="8" />
+    <!-- Target OS Version -->
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="8" />
 
-	<!-- Application Hardware Requirements -->
-	<uses-feature android:name="android.hardware.camera"
-		android:required="false" /> <!-- true -->
-	<uses-feature android:name="android.hardware.microphone"
-		android:required="false" /> <!--  true -->
-	<uses-feature android:name="android.hardware.telephony"
-		android:required="false" />
-	<uses-feature android:name="android.hardware.bluetooth"
-		android:required="false" />
+    <!-- Application Hardware Requirements -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" /> <!-- true -->
+    <uses-feature
+        android:name="android.hardware.microphone"
+        android:required="false" /> <!-- true -->
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="false" />
 
-	<!-- Application Permissions -->
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.CALL_PHONE" />
-	<uses-permission android:name="android.permission.RECORD_AUDIO" />
-	<uses-permission android:name="android.permission.RECORD_VIDEO" />
-	<uses-permission android:name="android.permission.CAMERA" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Application Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-	<application android:icon="@drawable/icon" android:label="@string/zimity"
-		 android:name=".ZimityApplication">
+    <application
+        android:icon="@drawable/icon"
+        android:label="@string/zimity"
+        android:name=".ZimityApplication"
+        android:theme="@style/Theme.Zimity" >
 
-		<!-- Application Required Libraries -->
-		<uses-library android:name="com.google.android.maps" />
+        <!-- Application Required Libraries -->
+        <uses-library android:name="com.google.android.maps" />
 
-		<!-- Application Entry Point -->
-		<activity android:name=".MainMenu" android:label="@string/zimity">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
+        <!-- Application Entry Point -->
+        <activity
+            android:label="@string/zimity"
+            android:name=".ZimityActivity" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
 
-		<!-- Application Activities -->
-		<activity android:name=".LoginScreen" android:label="@string/login"></activity>
-		<activity android:name=".TitleScreen" android:label="@string/title"></activity>
-		<activity android:name=".Settings" android:label="@string/settings"></activity>
-		<activity android:name=".Deals" android:label="@string/deals"></activity>
-		<activity android:name=".Friends" android:label="@string/friends"></activity>
-		<activity android:name=".NearBy" android:label="@string/nearby"></activity>
-		<activity android:name=".Search" android:label="@string/search"></activity>
-		<activity android:name=".ImprintAudio" android:label="@string/imp_audio"></activity>
-		<activity android:name=".ImprintEvent" android:label="@string/imp_event"></activity>
-		<activity android:name=".ImprintMenu" android:label="@string/imprint"></activity>
-		<activity android:name=".ImprintPhoto" android:label="@string/imp_photo"></activity>
-		<activity android:name=".ImprintReminder" android:label="@string/imp_remind"></activity>
-		<activity android:name=".ImprintVideo" android:label="@string/imp_video"></activity>
-		<activity android:name=".ImprintNote" android:label="@string/imp_note"></activity>
-		<activity android:name=".Terms" android:label="@string/terms"></activity>
-		<activity android:name=".Privacy" android:label="@string/privacy"></activity>
-		<activity android:name=".Register"></activity>
-	</application>
-</manifest> 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Application Activities -->
+        <activity
+            android:label="@string/login"
+            android:name=".LoginActivity" >
+        </activity>
+        <activity
+            android:label="@string/title"
+            android:name=".TitleScreen" >
+        </activity>
+        <activity
+            android:label="@string/settings"
+            android:name=".SettingsActivity" >
+        </activity>
+        <activity
+            android:label="@string/deals"
+            android:name=".DealsActivity" >
+        </activity>
+        <activity
+            android:label="@string/friends"
+            android:name=".FriendsActivity" >
+        </activity>
+        <activity
+            android:label="@string/nearby"
+            android:name=".NearByActivity" >
+        </activity>
+        <activity
+            android:label="@string/search"
+            android:name=".SearchActivity" >
+        </activity>
+        <activity
+            android:label="@string/imp_audio"
+            android:name=".AudioActivity" >
+        </activity>
+        <activity
+            android:label="@string/imp_event"
+            android:name=".EventActivity" >
+        </activity>
+        <activity
+            android:label="@string/imprint"
+            android:name=".ImprintActivity" >
+        </activity>
+        <activity
+            android:label="@string/imp_photo"
+            android:name=".PhotoActivity" >
+        </activity>
+        <activity
+            android:label="@string/imp_remind"
+            android:name=".ReminderActivity" >
+        </activity>
+        <activity
+            android:label="@string/imp_video"
+            android:name=".VideoActivity" >
+        </activity>
+        <activity
+            android:label="@string/imp_note"
+            android:name=".NoteActivity" >
+        </activity>
+        <activity
+            android:label="@string/terms"
+            android:name=".TermsActivity" >
+        </activity>
+        <activity
+            android:label="@string/privacy"
+            android:name=".PrivacyActivity" >
+        </activity>
+        <activity android:name=".RegisterActivity" >
+        </activity>
+    </application>
+
+</manifest>

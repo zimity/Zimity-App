@@ -3,6 +3,8 @@
     <string name="GOOGLE_MAPS_API_KEY">0evPjFkHid4An24pjaLUeX1FRhhIXY18mF8xUxQ</string>
     <string name="GOOGLE_ANALYTICS_API_KEY">UA-26494119-1</string>
     
+    <string name="app_url">http://zimity.me/</string>
+    
     <string name="zimity">Zimity</string>
     <string name="deals">Deals</string>
     <string name="friends">Friends</string>
@@ -42,9 +44,9 @@
     <string name="video">Video</string>
     <string name="reminder">Reminder</string>
     <string name="event">Event</string>
-    <string name="flurryid">LNNSSV38F1AYQFNSPG2R</string>
     <string name="zimityURLProd">http://dev.zimity.me/imprints/add</string>
     <string name="zimityURLDev">http://192.168.1.112:8888/imprints/add</string>
+    
     
     <string name="SHARING_OPTION_PRIVATE">Private</string>
     <string name="SHARING_OPTION_FRIENDS">Friends</string>
