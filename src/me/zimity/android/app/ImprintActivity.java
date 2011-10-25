@@ -28,6 +28,8 @@ public class ImprintActivity extends GDActivity {
 		super.onCreate(savedInstanceState);
 		setActionBarContentView(R.layout.imprint_activity);
 		
+		addActionBarItem(Type.Settings);
+		
 		res = getResources();
 
 		tracker = GoogleAnalyticsTracker.getInstance();

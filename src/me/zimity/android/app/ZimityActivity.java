@@ -64,7 +64,7 @@ public class ZimityActivity extends GDActivity {
 	}
 
 	public void onClickSearchButton(View view) {
-		startActivity(new Intent(this, SearchActivity.class));
+		startActivity(new Intent(this, BookmarksActivity.class));
 	}
 
 	public void onClickFriendsButton(View view) {
@@ -87,29 +87,5 @@ public class ZimityActivity extends GDActivity {
 		super.onDestroy();
 
 		tracker.stopSession();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.main_menu, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.about:
-			startActivity(new Intent(this, SettingsActivity.class));
-			return true;
-		case R.id.terms:
-			startActivity (new Intent(this, TermsActivity.class));
-			return true;
-		case R.id.privacy:
-			startActivity (new Intent(this, PrivacyActivity.class));
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
 	}
 }

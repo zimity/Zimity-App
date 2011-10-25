@@ -24,8 +24,6 @@ public class PrivacyActivity extends GDActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		getWindow().requestFeature(Window.FEATURE_PROGRESS);
-
 		setActionBarContentView(R.layout.privacy_activity);
 				
 		res = getResources();

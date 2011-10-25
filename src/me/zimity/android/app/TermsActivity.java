@@ -33,8 +33,6 @@ public class TermsActivity extends GDActivity {
         WebView termsWebView = (WebView)findViewById(R.id.termsWebView);
         termsWebView.getSettings().setJavaScriptEnabled(true);
 
-        getWindow().requestFeature(Window.FEATURE_PROGRESS);
-
         final Activity activity = this;
 
         termsWebView.setWebChromeClient(new WebChromeClient() {

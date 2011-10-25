@@ -1,6 +1,7 @@
 package me.zimity.android.app;
 
 import greendroid.app.GDMapActivity;
+import greendroid.widget.ActionBarItem.Type;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -61,6 +62,9 @@ public class PhotoActivity extends GDMapActivity implements SurfaceHolder.Callba
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarContentView(R.layout.photo_activity);
+		
+		addActionBarItem(Type.Share);
+		addActionBarItem(Type.Settings);
 		
 		captionText = (TextView)findViewById(R.id.captionText);
 		save_button = (ImageButton)findViewById(R.id.save_button);

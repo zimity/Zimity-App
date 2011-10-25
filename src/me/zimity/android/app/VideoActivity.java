@@ -3,6 +3,7 @@ package me.zimity.android.app;
 import me.zimity.android.util.Common;
 import me.zimity.android.util.GPSHandler;
 import greendroid.app.GDMapActivity;
+import greendroid.widget.ActionBarItem.Type;
 import roboguice.activity.RoboMapActivity;
 import roboguice.inject.InjectView;
 
@@ -36,6 +37,9 @@ public class VideoActivity extends GDMapActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarContentView(R.layout.imprint_video);
+		
+		addActionBarItem(Type.Share);
+		addActionBarItem(Type.Settings);
 		
 		captionText = (TextView)findViewById(R.id.captionText);
 		save_button = (ImageButton)findViewById(R.id.save_button);

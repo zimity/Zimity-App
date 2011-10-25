@@ -2,6 +2,7 @@ package me.zimity.android.app;
 
 import me.zimity.android.util.Common;
 import greendroid.app.GDActivity;
+import greendroid.widget.ActionBarItem.Type;
 import roboguice.activity.RoboActivity;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
@@ -20,6 +21,9 @@ public class ReminderActivity extends GDActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarContentView(R.layout.main);
+		
+		addActionBarItem(Type.Share);
+		addActionBarItem(Type.Settings);
 		
 		res = getResources();
 				

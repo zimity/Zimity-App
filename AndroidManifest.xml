@@ -68,6 +68,17 @@
             android:name=".SettingsActivity" >
         </activity>
         <activity
+            android:label="@string/notifications"
+            android:name=".NotificationsPreferences" >
+        </activity>
+        <activity
+            android:label="@string/youraccount"
+            android:name=".YourAccountPreferences" >
+        </activity>
+        <activity
+            android:label="@string/about"
+            android:name=".AboutPreferences" />
+        <activity
             android:label="@string/deals"
             android:name=".DealsActivity" >
         </activity>
@@ -81,7 +92,7 @@
         </activity>
         <activity
             android:label="@string/search"
-            android:name=".SearchActivity" >
+            android:name=".BookmarkActivity" >
         </activity>
         <activity
             android:label="@string/imp_audio"

@@ -3,13 +3,10 @@ package me.zimity.android.app;
 import me.zimity.android.util.Common;
 import me.zimity.android.util.GPSHandler;
 import greendroid.app.GDMapActivity;
-import roboguice.activity.RoboMapActivity;
-import roboguice.inject.InjectView;
+import greendroid.widget.ActionBarItem.Type;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.inject.Inject;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -42,6 +39,11 @@ public class NoteActivity extends GDMapActivity {
 		save_button = (ImageButton)findViewById(R.id.save_button);
 		speech_button = (ImageButton)findViewById(R.id.speech_button);
 		map_view = (MapView)findViewById(R.id.map_view);
+		
+		addActionBarItem(Type.Share);
+		addActionBarItem(Type.Settings);
+		
+		addActionBarItem(Type.Talk);
 		
 		res = getResources();
 		

@@ -2,6 +2,7 @@ package me.zimity.android.app;
 
 import me.zimity.android.util.Common;
 import greendroid.app.GDActivity;
+import greendroid.widget.ActionBarItem.Type;
 import roboguice.activity.RoboActivity;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
@@ -19,6 +20,10 @@ public class FriendsActivity extends GDActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setActionBarContentView(R.layout.friends_activity);
+		
+		addActionBarItem(Type.Add);
+		addActionBarItem(Type.Compass);
+		addActionBarItem(Type.Search);
 		
 		res = getResources();
 				

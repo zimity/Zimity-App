@@ -3,6 +3,7 @@ package me.zimity.android.app;
 import me.zimity.android.util.Common;
 import me.zimity.android.util.GPSHandler;
 import greendroid.app.GDMapActivity;
+import greendroid.widget.ActionBarItem.Type;
 import roboguice.activity.RoboMapActivity;
 import roboguice.inject.InjectView;
 
