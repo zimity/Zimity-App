@@ -4,10 +4,8 @@ import me.zimity.android.util.Common;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceActivity;
 
 public class NotificationsPreferences extends PreferenceActivity {

@@ -5,11 +5,7 @@ import me.zimity.android.util.Common;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 import greendroid.widget.ItemAdapter;
-import greendroid.widget.item.DescriptionItem;
-import greendroid.widget.item.DrawableItem;
 import greendroid.widget.item.Item;
-import greendroid.widget.item.SeparatorItem;
-import greendroid.widget.item.TextItem;
 import greendroid.widget.item.ThumbnailItem;
 
 import java.util.ArrayList;

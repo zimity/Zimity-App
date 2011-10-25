@@ -720,6 +720,7 @@ containing a value of this type.
     }
     public static final class id {
         public static final int audio_button=0x7f06002f;
+        public static final int bookmark=0x7f060039;
         public static final int bottom=0x7f060008;
         public static final int captionText=0x7f060016;
         public static final int caption_button=0x7f06002e;
@@ -770,7 +771,6 @@ containing a value of this type.
         public static final int reminder=0x7f060032;
         public static final int right=0x7f06000a;
         public static final int save_button=0x7f060019;
-        public static final int search=0x7f060039;
         public static final int sharing_button=0x7f060017;
         public static final int single=0x7f06000e;
         public static final int speech_button=0x7f060018;
@@ -1006,23 +1006,23 @@ containing a value of this type.
     public static final class xml {
         public static final int about_preferences=0x7f050000;
         public static final int audio_button=0x7f050001;
-        public static final int caption_button=0x7f050002;
-        public static final int deals_button=0x7f050003;
-        public static final int event_button=0x7f050004;
-        public static final int friends_button=0x7f050005;
-        public static final int imprint_audio_picture_button=0x7f050006;
-        public static final int imprint_button=0x7f050007;
-        public static final int imprint_caption_button=0x7f050008;
-        public static final int imprint_event_button=0x7f050009;
-        public static final int imprint_picture_button=0x7f05000a;
-        public static final int imprint_reminder_button=0x7f05000b;
-        public static final int imprint_video_button=0x7f05000c;
-        public static final int notification_preferences=0x7f05000d;
-        public static final int photo_button=0x7f05000e;
-        public static final int photo_effect_button=0x7f05000f;
-        public static final int reminder_button=0x7f050010;
-        public static final int save_button=0x7f050011;
-        public static final int search_button=0x7f050012;
+        public static final int bookmarks_button=0x7f050002;
+        public static final int caption_button=0x7f050003;
+        public static final int deals_button=0x7f050004;
+        public static final int event_button=0x7f050005;
+        public static final int friends_button=0x7f050006;
+        public static final int imprint_audio_picture_button=0x7f050007;
+        public static final int imprint_button=0x7f050008;
+        public static final int imprint_caption_button=0x7f050009;
+        public static final int imprint_event_button=0x7f05000a;
+        public static final int imprint_picture_button=0x7f05000b;
+        public static final int imprint_reminder_button=0x7f05000c;
+        public static final int imprint_video_button=0x7f05000d;
+        public static final int notification_preferences=0x7f05000e;
+        public static final int photo_button=0x7f05000f;
+        public static final int photo_effect_button=0x7f050010;
+        public static final int reminder_button=0x7f050011;
+        public static final int save_button=0x7f050012;
         public static final int settings_button=0x7f050013;
         public static final int sharing_button=0x7f050014;
         public static final int speech_button=0x7f050015;

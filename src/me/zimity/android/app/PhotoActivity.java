@@ -14,13 +14,8 @@ import java.util.List;
 import me.zimity.android.util.Common;
 import me.zimity.android.util.GPSHandler;
 
-import roboguice.activity.RoboMapActivity;
-import roboguice.inject.InjectView;
-
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.inject.Inject;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -30,11 +25,8 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.Camera.PictureCallback;
 import android.hardware.Camera.ShutterCallback;
-import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;

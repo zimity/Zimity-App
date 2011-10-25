@@ -8,6 +8,6 @@
     <PreferenceCategory android:title="@string/about">
         <Preference android:title="@string/privacy" android:summary="" android:key="privacyPolicy" />
         <Preference android:title="@string/terms" android:summary="" android:key="termsOfService" />
-        <Preference android:title="@string/version" android:summary="@string/versionNumber" />
+        <Preference android:title="@string/version" android:summary="@string/versionNumber" android:enabled="false" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -4,13 +4,9 @@ import me.zimity.android.util.Common;
 import me.zimity.android.util.GPSHandler;
 import greendroid.app.GDMapActivity;
 import greendroid.widget.ActionBarItem.Type;
-import roboguice.activity.RoboMapActivity;
-import roboguice.inject.InjectView;
 
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
-import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
-import com.google.inject.Inject;
 
 import android.content.Intent;
 import android.content.res.Resources;
