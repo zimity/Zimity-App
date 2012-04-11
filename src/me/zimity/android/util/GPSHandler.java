@@ -1,42 +1,21 @@
 package me.zimity.android.util;
 
-import greendroid.app.GDActivity;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import java.util.List;
 
+import me.zimity.android.app.ImprintData;
 import me.zimity.android.app.R;
-import me.zimity.android.app.R.drawable;
-import me.zimity.android.app.R.string;
 import me.zimity.android.util.Common.SharingScope;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import roboguice.activity.RoboActivity;
-
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
-import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
-import com.google.inject.Inject;
-import com.google.inject.Provider;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
@@ -47,18 +26,20 @@ import android.os.Environment;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import static me.zimity.android.util.*;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapController;
+import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
+import com.google.android.maps.OverlayItem;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 public class GPSHandler {
-	
-	
-	// TODO: REWRITE GPS HANDLER
-
     private final static int MAP_ZOOMLEVEL = 17;
     private final static int VOICE_RECOGNITION_REQUEST_CODE = 1985;
     private SharingScope shareScope = SharingScope.PRIVATE;
@@ -70,7 +51,7 @@ public class GPSHandler {
     private MapController mapController;
     private String bestProvider;
     private String coarseProvider;
-    private final Activity activity;
+    private Activity activity;
 
     private List<Overlay> mapOverlays;
     private Drawable drawable;
@@ -82,27 +63,51 @@ public class GPSHandler {
     private File sdDir = Environment.getExternalStorageDirectory();
     private ImageButton saveButton;
     private ImageButton speechButton;
-
-    public GPSHandler(Activity act, MapView mapView, TextView captionText,
-            ImageButton saveButton, ImageButton speechButton) {
-        activity = act;
-
+    
+    private Context context;
+    
+    
+    public void setMapView(MapView mapView) {
         this.mapView = mapView;
         mapView.setSatellite(true);
         mapView.setBuiltInZoomControls(true);
-
+        
         mapController = mapView.getController();
         mapController.setZoom(MAP_ZOOMLEVEL);
-
-        this.captionText = captionText;
-
-        this.saveButton = saveButton;
-        saveButton.setEnabled(false);
-
+        
         mapOverlays = mapView.getOverlays();
         drawable = activity.getResources().getDrawable(R.drawable.mini_logo);
         itemizedOverlay = new MapViewOverlay(drawable);
-
+    }
+    
+    public void setCaptionText(TextView captionText) {
+        this.captionText = captionText;
+    }
+    
+    public void setSaveButton(ImageButton saveButton) {
+        this.saveButton = saveButton;
+        
+        saveButton.setEnabled(false);
+    }
+    
+    public void setSpeechButton(ImageButton speechButton) {
+        this.speechButton = speechButton;
+        
+        PackageManager pm = activity.getPackageManager();
+        List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(
+                RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
+        if (activities.size() != 0) {
+            speechButton.setEnabled(true);
+        } else {
+            // Hide and disable if not available
+            speechButton.setVisibility(View.INVISIBLE);
+            speechButton.setEnabled(false);
+        }
+    }
+    
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+        
         locationManager = (LocationManager)activity.getSystemService(Context.LOCATION_SERVICE);
 
         Criteria criteriaFine = new Criteria();
@@ -118,53 +123,73 @@ public class GPSHandler {
         criteriaCoarse.setPowerRequirement(Criteria.POWER_LOW);
         criteriaCoarse.setAccuracy(Criteria.ACCURACY_COARSE);
         coarseProvider = locationManager.getBestProvider(criteriaCoarse, true);
-
-        // Check to see if a recognition activity is present
-        this.speechButton = speechButton;
-
-        PackageManager pm = activity.getPackageManager();
-        List<ResolveInfo> activities = pm.queryIntentActivities(new Intent(
-                RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
-        if (activities.size() != 0) {
-            speechButton.setEnabled(true);
-        } else {
-            // Hide and disable if not available
-            speechButton.setVisibility(View.INVISIBLE);
-            speechButton.setEnabled(false);
-        }
-
     }
 
-    public void transmitData(Common.ImprintType type, String s) {
-        HashMap<String, String> hm = new HashMap<String, String>();
+    public GPSHandler() {
+    }
+    
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
-        hm.put(Common.IMPRINT_TYPE, type.toString());
-        hm.put(Common.IMPRINT_NOTE, captionText.getText().toString());
-        hm.put(Common.IMPRINT_USERID, "1");
-        hm.put(Common.IMPRINT_CLIENT, Common.CLIENT_ID);
-        hm.put(Common.IMPRINT_LATITUDE,
-                Double.toString(userLocation.getLatitude()));
-        hm.put(Common.IMPRINT_LONGITUDE,
-                Double.toString(userLocation.getLongitude()));
-        hm.put(Common.IMPRINT_ALTITUDE,
-                Double.toString(userLocation.getAltitude()));
-        hm.put(Common.IMPRINT_BEARING,
-                Float.toString(userLocation.getBearing()));
-        hm.put(Common.IMPRINT_SPEED, Float.toString(userLocation.getSpeed()));
-        hm.put(Common.IMPRINT_ACCURACY,
-                Float.toString(userLocation.getAccuracy()));
-        hm.put(Common.IMPRINT_SHARING, shareScope.toString());
-        hm.put(Common.IMPRINT_SYNCD, "0");
-        hm.put(Common.IMPRINT_DELETED, "0");
+    public void transmitData(Common.ImprintType type, String extra) {
+        ImprintData imprintData = new ImprintData();
+        imprintData.setImp_type(type.ordinal());
+        imprintData.setNote(captionText.getText().toString());
+        imprintData.setClient(Common.CLIENT_ID);
+        imprintData.setLatitude(userLocation.getLatitude());
+        imprintData.setLongitude(userLocation.getLongitude());
+        imprintData.setAltitude(userLocation.getAltitude());
+        imprintData.setBearing(userLocation.getBearing());
+        imprintData.setSpeed(userLocation.getSpeed());
+        imprintData.setAccuracy(userLocation.getAccuracy());
+        imprintData.setSharing(shareScope.ordinal());
+        imprintData.setSyncd(0);
+        imprintData.setDeleted(0);
         
-        // Only include an EXTRA value for multimedia imprints (ie. not notes only)
-        if (type != Common.ImprintType.NOTE) {
-            hm.put(Common.IMPRINT_EXTRA, s);
+        Gson gson = new Gson();
+        String json = gson.toJson(imprintData);
+        
+        File file;
+        RequestParams params = new RequestParams();
+        if (extra != "") {
+            file = new File(extra);
+            
+            try {
+                params.put("file", file);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }            
         }
-
-        DataDelivery dm = new DataDelivery();
-        dm.execute(hm);
-        activity.finish();
+        
+        params.put("metadata", json);
+        
+        AsyncHttpClient client = new AsyncHttpClient();
+        //http://192.168.1.112:8888/imprints/add
+        client.post("http://zimity.me/imprints/add", new AsyncHttpResponseHandler() {
+            ProgressDialog pd;
+            
+            @Override
+            public void onStart() {
+                pd = ProgressDialog.show(context, "Uploading...", "Please wait.");
+            }
+            
+            @Override
+            public void onFailure(Throwable e) {
+                Log.e("GPSHandle onFailure", e.getMessage());
+            }
+            
+            @Override
+            public void onFinish() {
+                pd.dismiss();
+            }
+            
+            @Override
+            public void onSuccess(String response) {
+                Log.d("GPSHandle onSuccess", response);
+                pd.dismiss();
+            }
+        });
     }
 
     public void startLocationUpdates() {

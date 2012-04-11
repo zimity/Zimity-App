@@ -25,6 +25,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
+            android:inputType="textShortMessage|textAutoCorrect|textCapSentences|textMultiLine|text"
+            android:imeOptions="actionSend|flagNoEnterAction"
             android:minLines="6" />
 
         <LinearLayout

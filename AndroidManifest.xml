@@ -6,8 +6,8 @@
 
     <!-- Target OS Version -->
     <uses-sdk
-        android:minSdkVersion="7"
-        android:targetSdkVersion="8" />
+        android:minSdkVersion="11"
+        android:targetSdkVersion="11" />
 
     <!-- Application Hardware Requirements -->
     <uses-feature
@@ -36,9 +36,7 @@
 
     <application
         android:icon="@drawable/icon"
-        android:label="@string/zimity"
-        android:name=".ZimityApplication"
-        android:theme="@style/Theme.Zimity" >
+        android:label="@string/zimity" >
 
         <!-- Application Required Libraries -->
         <uses-library android:name="com.google.android.maps" />
@@ -46,7 +44,7 @@
         <!-- Application Entry Point -->
         <activity
             android:label="@string/zimity"
-            android:name=".ZimityActivity" >
+            android:name="me.zimity.android.activities.ZimityActivity" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,80 +55,92 @@
         <!-- Application Activities -->
         <activity
             android:label="@string/login"
-            android:name=".LoginActivity" >
+            android:name="me.zimity.android.activities.LoginActivity" >
         </activity>
         <activity
             android:label="@string/title"
-            android:name=".TitleScreen" >
+            android:name="me.zimity.android.activities.TitleScreen" >
         </activity>
         <activity
             android:label="@string/settings"
-            android:name=".SettingsActivity" >
+            android:name="me.zimity.android.activities.SettingsActivity" >
         </activity>
         <activity
             android:label="@string/notifications"
-            android:name=".NotificationsPreferences" >
+            android:name="me.zimity.android.activities.NotificationsPreferences" >
         </activity>
         <activity
             android:label="@string/youraccount"
-            android:name=".YourAccountPreferences" >
+            android:name="me.zimity.android.activities.YourAccountPreferences" >
         </activity>
         <activity
             android:label="@string/about"
-            android:name=".AboutPreferences" />
+            android:name="me.zimity.android.activities.AboutPreferences" />
         <activity
             android:label="@string/deals"
-            android:name=".DealsActivity" >
+            android:name="me.zimity.android.activities.DealsActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/friends"
-            android:name=".FriendsActivity" >
+            android:name="me.zimity.android.activities.BasicImprintActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/nearby"
-            android:name=".NearByActivity" >
+            android:name="me.zimity.android.activities.NearByActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/search"
-            android:name=".BookmarkActivity" >
+            android:name="me.zimity.android.activities.BookmarkActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/imp_audio"
-            android:name=".AudioActivity" >
+            android:name="me.zimity.android.activities.AudioActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
-            android:label="@string/imp_event"
-            android:name=".EventActivity" >
+        	android:label="@string/imp_event"
+            android:name="me.zimity.android.activities.EventActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/imprint"
-            android:name=".ImprintActivity" >
+            android:name="me.zimity.android.activities.ImprintActivity" >
         </activity>
         <activity
             android:label="@string/imp_photo"
-            android:name=".PhotoActivity" >
+            android:name="me.zimity.android.activities.PhotoActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/imp_remind"
-            android:name=".ReminderActivity" >
+            android:name="me.zimity.android.activities.ReminderActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/imp_video"
-            android:name=".VideoActivity" >
+            android:name="me.zimity.android.activities.VideoActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/imp_note"
-            android:name=".NoteActivity" >
+            android:name="me.zimity.android.activities.NoteActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize" >
         </activity>
         <activity
             android:label="@string/terms"
-            android:name=".TermsActivity" >
+            android:name="me.zimity.android.activities.TermsActivity" >
         </activity>
         <activity
             android:label="@string/privacy"
-            android:name=".PrivacyActivity" >
+            android:name="me.zimity.android.activities.PrivacyActivity" >
         </activity>
-        <activity android:name=".RegisterActivity" >
+        <activity
+            android:label="@string/register"
+            android:name="me.zimity.android.activities.RegisterActivity" >
         </activity>
     </application>
 

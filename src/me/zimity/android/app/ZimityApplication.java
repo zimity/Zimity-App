@@ -1,20 +1,15 @@
 package me.zimity.android.app;
 
-import greendroid.app.GDApplication;
+import java.util.List;
 
-import android.content.Intent;
-import android.net.Uri;
+import com.google.inject.Module;
 
-public class ZimityApplication extends GDApplication {
+import roboguice.inject.RoboApplicationProvider;
+
+public class ZimityApplication extends RoboApplicationProvider {
 	
-    @Override
-    public Class<?> getHomeActivityClass() {
-        return ZimityActivity.class;
-    }
-    
-    @Override
-    public Intent getMainApplicationIntent() {
-        return new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.app_url)));
-    }
+    protected void addApplicationModules(List<Module> modules) {
+        modules.add(new ZimityModule());
+    } 
 
 }

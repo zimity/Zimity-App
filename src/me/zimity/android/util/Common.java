@@ -17,7 +17,7 @@ public final class Common {
     public final static LogLevel LOG_LEVEL = LogLevel.DISABLED;
     
     public enum ImprintType {
-    	NOTE, PHOTO, AUDIO, VIDEO, REMINDER, EVENT, DETAIL, BOOKMARK
+    	NOTE, PHOTO, AUDIO, VIDEO, REMINDER, EVENT, DEAL, BOOKMARK
     }
     
     public enum SharingScope {

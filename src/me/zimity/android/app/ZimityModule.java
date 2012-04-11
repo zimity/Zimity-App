@@ -1,8 +1,8 @@
 package me.zimity.android.app;
 
-import roboguice.config.AbstractAndroidModule;
+import com.google.inject.AbstractModule;
 
-public class ZimityModule extends AbstractAndroidModule {
+public class ZimityModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
